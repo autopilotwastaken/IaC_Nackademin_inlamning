@@ -1,0 +1,58 @@
+# Define the CSV file location and import the data
+$Csvfile = "C:\Users\Administrator\Documents\SkyrimShit\SkyrimCitizens.csv"
+$Users = Import-Csv $Csvfile
+
+# The password for the new user
+$Password = "Linux4Ever"
+
+
+
+# Loop through each user
+foreach ($User in $Users) {
+
+        # Defining user parameters using variables
+
+            $GivenName             = $User.'firstName'
+            $Surname               = $User.'lastName'
+            $Title                 = $User.'title'
+            $DisplayName           = "$($User.'firstName') $($User.'lastName')"
+            $SAM    		       = $($User.'firstName' + $User.'lastName'.Substring(0,2))
+            $UPN	               = $($User.'firstName' + $User.'lastName'.Substring(0,2)) + '@skyrim.gov'
+            $EmailAddress          = $($User.'firstName' + $User.'lastName'.Substring(0,2)) + '@' + $User.'title' + '.skyrim.gov'
+            $City                  = $User.'city'
+            $Path                  = 'OU=Citizens_U,OU=' + $City + ',OU=Cities,DC=skyrim,DC=gov'
+            $OfficePhone           = $User.'number'
+            $Group1                = $User.'group1'
+            $Group2                = $User.'group2'
+
+            
+            # Import the Active Directory module
+            Import-Module ActiveDirectory
+
+            New-ADUser -Name "$DisplayName" `
+             -DisplayName "$DisplayName" `
+             -SamAccountName "$SAM" `
+             -Title "$Title" `
+             -UserPrincipalName "$UPN" `
+             -GivenName "$GivenName" `
+             -Surname "$Surname" `
+             -EmailAddress "$EmailAddress" `
+             -City "$City" `
+             -Path "$Path" `
+             -Office "$Office" `
+             -OfficePhone "$OfficePhone" `
+             -AccountPassword (ConvertTo-SecureString "$Password" -AsPlainText -Force) `
+             -Enabled $true `
+             -ChangePasswordAtLogon $true # Set the "User must change password at next logon"
+
+              Write-Host "The user $Displayname is created successfully." -ForegroundColor Green
+
+              Add-ADGroupMember -Identity $Group1 `
+              -Members $SAM 
+           Write-Host "The user $Displayname is added to $Group1" -ForegroundColor Green
+
+              Add-ADGroupMember -Identity $Group2 `
+              -Members $SAM 
+           Write-Host "The user $Displayname is added to $Group2" -ForegroundColor Green
+
+}
