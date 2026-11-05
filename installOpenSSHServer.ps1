@@ -1,3 +1,4 @@
+# This script assumes you are running Win11 / WinServ22 (or newer)
 # This script has to be run in an elevated (Run as Administrator) terminal!
 
 # taken from MS Learn, check if current user is Local Admin
@@ -16,3 +17,13 @@ if ($PSVersionTable.PSVersion.Major -lt 5) {
 } else {
     Write-Host "Acceptable PowerShell version!"
 }
+
+# Check if OpenSSH Server installed & install if not
+$openSSHInstalled = Get-WindowsCapability -Online | Where-Object Name -like 'OpenSSH.Server~~~~0.0.1.0'
+if ($openSSHInstalled.State -eq "NotPresent") {
+    Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
+} else {
+    Write-Host "OpenSSH Server is installed!"
+}
+
+

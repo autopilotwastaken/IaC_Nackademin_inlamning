@@ -22,10 +22,16 @@ Basic setup and testing of the 4 basic terraform commands (`init, validate, plan
 
 Tried implementing a `provisioner` that deletes the folders that Terraform creates, but only ran into issues. There are ways to do this in `bash`, but I descided on only running PowerShell and Terraform for now. Might revisit if I get the project to a passing grade before the deadline.
 
-### installOpenSSHServer.ps1
+### installOpenSSHServer.ps1 part 1
 
 Found an MS Learn Guide at [this URL](https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse?tabs=powershell&pivots=windows-11) for installing OpenSSH on Windows.
 
 Also [this guide](https://woshub.com/installing-sftp-ssh-ftp-server-on-windows-server-2012-r2/) for installing SFTP on Windows.
 
 Created the file and implemented if-statements to check the PowerShell version requirement as well as if the script is ran in an elevated shell. If requirements are not met, exits.
+
+## 2026-11-05
+
+### installOpenSSHServer.ps1 part 2
+
+Added an if-statement in script to check whether OpenSSHServer was installed, and install if not.
