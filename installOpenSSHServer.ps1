@@ -26,4 +26,26 @@ if ($openSSHInstalled.State -eq "NotPresent") {
     Write-Host "OpenSSH Server is installed!"
 }
 
+# Start the sshd service
+$sshdStatus = (Get-Service "sshd")
+if ($sshdStatus.Status -eq "Stopped") {
+    Write-Host "Starting sshd service"
+    Start-Service sshd
+} else {
+    Write-Host "sshd service is already running!"
+}
+
+# # OPTIONAL but recommended:
+# Set-Service -Name sshd -StartupType 'Automatic'
+
+# # Confirm the Firewall rule is configured. It should be created automatically by setup. Run the following to verify
+if (!(Get-NetFirewallRule -Name "sshd-in" -ErrorAction SilentlyContinue)) {
+    Write-Output "Making and starting Firewall Rule 'sshd-in'"
+    New-NetFirewallRule -Name 'sshd-in' -DisplayName 'OpenSSH Server (sshd)' -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 22
+} elseif ((Get-NetFirewallRule -Name "sshd-in" -ErrorAction SilentlyContinue).enabled -eq 'False') {
+    Write-Output "Starting Firewall Rule 'sshd-in'"
+    Set-NetFirewallRule -Name "sshd-in" -Enabled True
+} else {
+    Write-Output "Firewall rule 'sshd-in' already exists and is Running"
+}
 
