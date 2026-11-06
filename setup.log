@@ -1,0 +1,15 @@
+[lau-laptop\laura] [2026-11-06 23:34:02] [INFO] Script running with admin rights
+[lau-laptop\laura] [2026-11-06 23:35:30] [INFO] testar
+[lau-laptop\laura] [2026-11-06 23:39:09] [] testar
+[lau-laptop\laura] [2026-11-06 23:41:22] [NORMAL] testar
+[lau-laptop\laura] [2026-11-06 23:42:25] [ERROR] testar1
+[lau-laptop\laura] [2026-11-06 23:42:25] [OK] testar2
+[lau-laptop\laura] [2026-11-06 23:42:25] [NORMAL] testar3
+[lau-laptop\laura] [2026-11-06 23:43:50] [ERROR] testar1
+[lau-laptop\laura] [2026-11-06 23:43:50] [OK] testar2
+[lau-laptop\laura] [2026-11-06 23:43:50] [] testar3
+[lau-laptop\laura] [2026-11-06 23:44:27] [ERROR] testar1
+[lau-laptop\laura] [2026-11-06 23:44:27] [OK] testar2
+[lau-laptop\laura] [2026-11-06 23:44:27] [NORMAL] testar3
+[lau-laptop\laura] [2026-11-06 23:56:41] [OK] Running as Admin!
+[lau-laptop\laura] [2026-11-07 00:14:05] [OK] Enabled Firewall Rule: sshd-in

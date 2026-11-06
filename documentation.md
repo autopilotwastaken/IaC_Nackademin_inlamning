@@ -38,8 +38,10 @@ Added an if-statement in script to check whether OpenSSHServer was installed, an
 
 ## 2026-11-06
 
-### installOpenSSHServer.ps1 sshd start + firewall rule
+### installOpenSSHServer.ps1 sshd start + firewall rule + logging function
 
 Added if-statement to check if the service 'sshd' is running, and start if not.
 
 Also added if-statement to see if firewall rule for sshd exists, makes rule if not. Then learned how to disable firewall rule via powershell command `Disable-FirewallRule` and realised it would be good to add a check in script to check for existing but disabled FW-rule. Made that check as an `elseif` section.
+
+Added logging function based on teachers example code. Removed switch which outputed colours in terminal, don't care about fancy colours. Renamed "SUCCESS" to "OK". Added `$(whoami)` to beginning of timestamps, to sign logs. Made sure to update all the if-statements that start/install features, so they now log if anything new happens.
