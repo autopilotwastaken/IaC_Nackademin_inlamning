@@ -18,7 +18,7 @@ resource "terraform_data" "install_sshd" {
   }
 }
 
-# removes generated folders when destroying
+# removes generated folders when destroying (MAYBE REMOVE? MAKES NO SENSE TO DELETE IN HOME USE)
 resource "terraform_data" "remove_folders" {
   provisioner "local-exec" {
     when = destroy
@@ -28,10 +28,25 @@ resource "terraform_data" "remove_folders" {
 }
 
 # deactivates sshd-in firewall rule
-resource "terraform_data" "deactivate_sshd" {
+resource "terraform_data" "deactivate_sshd-in" {
   provisioner "local-exec" {
     when = destroy
     command = "Disable-NetFirewallRule 'sshd-in'"
     interpreter = ["PowerShell"]
   }
 }
+
+# stops sshd service
+resource "terraform_data" "stop_sshd" {
+  provisioner "local-exec" {
+    when = destroy
+    command = "Stop-Service 'sshd'"
+    interpreter = ["PowerShell"]
+  }
+}
+
+
+### TODO
+# Create 2 users
+# Give users access to one shared folder
+# Make test script of one of the users uploading a file and then downloading it from SFTP server

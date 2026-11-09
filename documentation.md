@@ -58,3 +58,9 @@ Added the commented out removal of the `shared` folder back into `main.tf`. Uses
 Added a provisioner to deactivate firewall rule `sshd-in` when destroying. Uses PowerShell command `Disable-NetFirewallRule`.
 
 Added a provisioner to install sshd and make its firewall rule on `terraform apply`. Uses Powershell command `powershell.exe -ExecutionPolicy Bypass -File <FILEPATH>`.
+
+added a provisioner to stop sshd service when destroying. Uses PowerShell command `Stop-Service`.
+
+### SFTP user setup
+
+[Found a guide on how to set up SFTP users](https://rajdipkhavad.com/blog/windows-sftp-server-setup/)
