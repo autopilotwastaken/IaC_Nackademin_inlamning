@@ -61,7 +61,7 @@ if ($sshdStatus.Status -eq "Stopped") {
     Write-Host "sshd service is already running!"
 }
 
-# OPTIONAL but recommended (taken from MS Learn guide)
+# OPTIONAL but recommended (taken from MS Learn guide, saving for future use)
 # Set-Service -Name sshd -StartupType 'Automatic'
 
 # Check SSH firewall rule + create 

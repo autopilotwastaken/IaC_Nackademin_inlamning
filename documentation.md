@@ -22,7 +22,7 @@ Basic setup and testing of the 4 basic terraform commands (`init, validate, plan
 
 Tried implementing a `provisioner` that deletes the folders that Terraform creates, but only ran into issues. There are ways to do this in `bash`, but I descided on only running PowerShell and Terraform for now. Might revisit if I get the project to a passing grade before the deadline.
 
-### installOpenSSHServer.ps1 part 1
+### installOpenSSHServer.ps1 Prerequisite checks
 
 Found an MS Learn Guide at [this URL](https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse?tabs=powershell&pivots=windows-11) for installing OpenSSH on Windows.
 
@@ -32,7 +32,7 @@ Created the file and implemented if-statements to check the PowerShell version r
 
 ## 2026-11-05
 
-### installOpenSSHServer.ps1 part 2
+### installOpenSSHServer.ps1 install OpenSSH Server
 
 Added an if-statement in script to check whether OpenSSHServer was installed, and install if not.
 
@@ -45,3 +45,12 @@ Added if-statement to check if the service 'sshd' is running, and start if not.
 Also added if-statement to see if firewall rule for sshd exists, makes rule if not. Then learned how to disable firewall rule via powershell command `Disable-FirewallRule` and realised it would be good to add a check in script to check for existing but disabled FW-rule. Made that check as an `elseif` section.
 
 Added logging function based on teachers example code. Removed switch which outputed colours in terminal, don't care about fancy colours. Renamed "SUCCESS" to "OK". Added `$(whoami)` to beginning of timestamps, to sign logs. Made sure to update all the if-statements that start/install features, so they now log if anything new happens.
+
+## 2026-11-09
+
+### powershell command from terraform
+
+Found the syntax on how to execute PowerShell commands from terraform, mainly the syntax needed.
+[Link to stackoverflow thread](https://stackoverflow.com/questions/50604127/how-to-execute-powershell-command-through-terraform)
+
+Added the commented out removal of the `shared` folder back into `main.tf`.
