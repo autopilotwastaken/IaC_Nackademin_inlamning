@@ -77,4 +77,20 @@ if (!(Get-NetFirewallRule -Name "sshd-in" -ErrorAction SilentlyContinue)) {
     Write-Output "Firewall rule 'sshd-in' already exists and is Running"
 }
 
+# Create new user for SFTP
+import-module microsoft.powershell.localaccounts # needed for managing local users in PS7
+$userExist = Get-LocalUser "lau-sftp" -ErrorAction SilentlyContinue
+# $password = "p"
+if ($null -eq $userExist) {
+    Write-Host "Creating user 'lau-sftp'"
+    New-LocalUser -Name "lau-sftp" -NoPassword 
+    Write-Log "Created user 'lau-sftp'" -Level OK
+} else {
+    Write-Host "User 'lau-sftp' already exists!" 
+}
+
+# New-LocalUser -Name "lau-sftp" -Password (Read-Host -AsSecureString "Password")
+
+# [Microsoft.PowerShell.Commands.UserNotFoundException]
+
 # add SFTP config of users and their folder access either here or in separate file!
