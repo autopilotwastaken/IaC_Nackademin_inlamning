@@ -18,15 +18,6 @@ resource "terraform_data" "install_sshd" {
   }
 }
 
-# removes generated folders when destroying (MAYBE REMOVE? MAKES NO SENSE TO DELETE IN HOME USE)
-resource "terraform_data" "remove_folders" {
-  provisioner "local-exec" {
-    when = destroy
-    command = "Remove-Item ${path.module}/shared"
-    interpreter = ["PowerShell"]
-  }
-}
-
 # deactivates sshd-in firewall rule
 resource "terraform_data" "deactivate_sshd-in" {
   provisioner "local-exec" {
