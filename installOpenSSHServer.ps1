@@ -89,8 +89,6 @@ if ($null -eq $userExist) {
     Write-Host "User 'lau-sftp' already exists!" 
 }
 
-# New-LocalUser -Name "lau-sftp" -Password (Read-Host -AsSecureString "Password")
 
-# [Microsoft.PowerShell.Commands.UserNotFoundException]
-
-# add SFTP config of users and their folder access either here or in separate file!
+# Add reading from JSON + loop over list of users from JSON file when creating new users
+# Add folder access to new users
