@@ -53,4 +53,8 @@ Added logging function based on teachers example code. Removed switch which outp
 Found the syntax on how to execute PowerShell commands from terraform, mainly the syntax needed.
 [Link to stackoverflow thread](https://stackoverflow.com/questions/50604127/how-to-execute-powershell-command-through-terraform)
 
-Added the commented out removal of the `shared` folder back into `main.tf`.
+Added the commented out removal of the `shared` folder back into `main.tf`. Uses PowerShell command `Remove-Item`
+
+Added a provisioner to deactivate firewall rule `sshd-in` when destroying. Uses PowerShell command `Disable-NetFirewallRule`.
+
+Added a provisioner to install sshd and make its firewall rule on `terraform apply`. Uses Powershell command `powershell.exe -ExecutionPolicy Bypass -File <FILEPATH>`.

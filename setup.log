@@ -13,3 +13,4 @@
 [lau-laptop\laura] [2026-11-06 23:44:27] [NORMAL] testar3
 [lau-laptop\laura] [2026-11-06 23:56:41] [OK] Running as Admin!
 [lau-laptop\laura] [2026-11-07 00:14:05] [OK] Enabled Firewall Rule: sshd-in
+[lau-laptop\laura] [2026-11-09 09:44:25] [OK] Enabled Firewall Rule: sshd-in
