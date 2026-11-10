@@ -79,16 +79,17 @@ if (!(Get-NetFirewallRule -Name "sshd-in" -ErrorAction SilentlyContinue)) {
 
 # Create new user for SFTP
 import-module microsoft.powershell.localaccounts # needed for managing local users in PS7
-$json = Get-Content -Path .\users.json | ConvertFrom-Json
-$securepass = ConvertTo-SecureString -String $json.password -AsPlainText -Force
 
-$userExist = Get-LocalUser $json.name -ErrorAction SilentlyContinue
-if ($null -eq $userExist) {
-    Write-Host "Creating user $($json.name)"
-    New-LocalUser -Name $json.name -Password $securepass
-    Write-Log "Created user $($json.name)" -Level OK
-} else {
-    Write-Host "User $($json.name) already exists!" 
+$json = Get-Content -Path .\users.json | ConvertFrom-Json
+foreach ($account in $json) {
+    $userExist = Get-LocalUser $account.name -ErrorAction SilentlyContinue
+    if ($null -eq $userExist) {
+        $securepass = ConvertTo-SecureString -String $account.password -AsPlainText -Force
+        Write-Host "Creating user $($account.name)"
+        New-LocalUser -Name $account.name -Password $securepass
+    } else {
+        Write-Host "User $($account.name) already exists!" 
+    }
 }
 
 

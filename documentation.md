@@ -78,4 +78,6 @@ Made a test `JSON` file to load user info from during `terraform apply`.
 
 ### load from users.json to installOpenSSHServer.ps1
 
-Refactored sftp user setup to load username and password from `users.json` in installOpenSSHServer.ps1. Uses `-AsPlainText -Force` because it is taken from unencrypted text via `.json`.
+Refactored sftp user setup to load username and password from `users.json` in `installOpenSSHServer.ps1`. Uses `-AsPlainText -Force` because it is taken from unencrypted text via `.json`.
+
+Added a second user to the `json` file, making it a list with 2 dicts. Refactored the code to unpack the list and loop over each dict when creating users, entirely through experimenting.

@@ -6,6 +6,11 @@ resource "local_file" "test" {
   filename = "${path.module}/shared/placeholder"
 }
 
+# resource "local_file" "users_config" {
+#   filename = "${path.module}/users.json"
+#   content = 
+# }
+
 # runs script to install sshd
 resource "terraform_data" "install_sshd" {
   provisioner "local-exec" {
