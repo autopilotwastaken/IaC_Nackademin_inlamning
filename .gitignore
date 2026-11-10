@@ -3,3 +3,4 @@
 *.docx
 .terraform*
 /shared
+labb.ps1

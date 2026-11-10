@@ -48,19 +48,34 @@ Added logging function based on teachers example code. Removed switch which outp
 
 ## 2026-11-09
 
+Removed the old WinServ user-add script and createSFTPfolders.ps1.
+
 ### powershell command from terraform
 
 Found the syntax on how to execute PowerShell commands from terraform, mainly the syntax needed.
 [Link to stackoverflow thread](https://stackoverflow.com/questions/50604127/how-to-execute-powershell-command-through-terraform)
 
-Added the commented out removal of the `shared` folder back into `main.tf`. Uses PowerShell command `Remove-Item`
+Added the commented out removal of the `shared` folder back into `main.tf`. Uses PowerShell command `Remove-Item`. This was also removed a couple commits later.
 
 Added a provisioner to deactivate firewall rule `sshd-in` when destroying. Uses PowerShell command `Disable-NetFirewallRule`.
 
 Added a provisioner to install sshd and make its firewall rule on `terraform apply`. Uses Powershell command `powershell.exe -ExecutionPolicy Bypass -File <FILEPATH>`.
 
-added a provisioner to stop sshd service when destroying. Uses PowerShell command `Stop-Service`.
+Added a provisioner to stop sshd service when destroying. Uses PowerShell command `Stop-Service`.
 
 ### SFTP user setup
 
 [Found a guide on how to set up SFTP users](https://rajdipkhavad.com/blog/windows-sftp-server-setup/)
+[MS Learn noted the need to import Microsoft.PowerShell.LocalAccounts Module](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.localaccounts/get-localuser?view=powershell-5.1)
+
+Set up a hardcoded test user to make sure I understood how to create a local user. Lots of debugging as it took a while to find out that i need to import the Microsoft.PowerShell.LocalAccounts module. Found this in various StackOverflow threads.
+
+## 2026-11-10
+
+### users.json
+
+Made a test `JSON` file to load user info from during `terraform apply`.
+
+### load from users.json to installOpenSSHServer.ps1
+
+Refactored sftp user setup to load username and password from `users.json` in installOpenSSHServer.ps1. Uses `-AsPlainText -Force` because it is taken from unencrypted text via `.json`.

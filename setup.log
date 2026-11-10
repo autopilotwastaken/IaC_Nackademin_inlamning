@@ -20,3 +20,9 @@
 [lau-laptop\laura] [2026-11-09 11:24:55] [OK] Enabled Firewall Rule: sshd-in
 [lau-laptop\laura] [2026-11-09 16:05:52] [OK] Started Service: sshd
 [lau-laptop\laura] [2026-11-09 16:05:54] [OK] Enabled Firewall Rule: sshd-in
+[lau-laptop\laura] [2026-11-09 17:31:33] [OK] Started Service: sshd
+[lau-laptop\laura] [2026-11-09 17:31:36] [OK] Enabled Firewall Rule: sshd-in
+[lau-laptop\laura] [2026-11-09 17:31:36] [OK] Created user 'lau-sftp'
+[lau-laptop\laura] [2026-11-10 23:54:16] [OK] Started Service: sshd
+[lau-laptop\laura] [2026-11-10 23:54:18] [OK] Enabled Firewall Rule: sshd-in
+[lau-laptop\laura] [2026-11-10 23:54:18] [OK] Created user lau-sftp

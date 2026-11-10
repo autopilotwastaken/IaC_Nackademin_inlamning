@@ -38,3 +38,4 @@ resource "terraform_data" "stop_sshd" {
 # Create 2 users
 # Give users access to one shared folder
 # Make test script of one of the users uploading a file and then downloading it from SFTP server
+# Write new script that consolidates stop_sshd and deactivate_sshd-in to one resource
