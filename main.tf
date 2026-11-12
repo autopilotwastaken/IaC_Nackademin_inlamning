@@ -3,7 +3,7 @@ provider "local" {}
 # create placeholder file
 resource "local_file" "test" {
   content = "This is a placeholder file generated in order to generate the file structure"
-  filename = "${path.module}/shared/.keep"
+  filename = "${path.module}/sftp/shared/.keep"
 }
 
 resource "local_sensitive_file" "users" {

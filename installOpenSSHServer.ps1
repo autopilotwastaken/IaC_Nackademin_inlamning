@@ -64,10 +64,14 @@ foreach ($account in $json) {
 foreach ($account in $json) {
     $userExist = Get-LocalUser $account.name -ErrorAction SilentlyContinue
     if ($null -ne $userExist) {
-        icacls ".\shared" /grant "$($env:COMPUTERNAME)\$($account.name):M"
+        icacls ".\sftp\shared" /grant "$($env:COMPUTERNAME)\$($account.name):M"
     } else {
         Write-Host "User $($account.name) doesn't exist!" 
     }
 }
 
-# Add folder access to new users
+# Append to C:\ProgramData\ssh\sshd_config:
+# Match User $($account.name)
+#     ForceCommand internal-sftp
+#     ChrootDirectory $PSScriptRoot$($account.chroot)/$($account.name)
+#     PasswordAuthentication yes
