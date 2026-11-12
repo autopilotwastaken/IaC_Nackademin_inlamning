@@ -1,10 +1,1 @@
-[
-    {
-        "name": "lau-sftp",
-        "password": "p"
-    },
-    {
-        "name": "ea-sftp",
-        "password": "4"
-    }
-]
+[{"name":"ea-sftp","password":"4"},{"name":"lau-sftp","password":"p"}]

@@ -3,16 +3,14 @@ provider "local" {}
 # create placeholder file
 resource "local_file" "test" {
   content = "This is a placeholder file generated in order to generate the file structure"
-  filename = "${path.module}/shared/placeholder"
+  filename = "${path.module}/shared/.keep"
 }
 
-# runs script to install sshd
-resource "terraform_data" "install_sshd" {
-  provisioner "local-exec" {
-    when = create
-    command = "${path.module}/installOpenSSHServer.ps1"
-    interpreter = ["PowerShell", "-ExecutionPolicy", "Bypass", "-Command"]
-  }
+resource "local_sensitive_file" "users" {
+  filename = "${path.module}/users.json"
+  content = jsonencode([
+    for u, p in var.users : { name = u, password = p }
+  ])
 }
 
 # deactivates sshd-in firewall rule
@@ -32,9 +30,3 @@ resource "terraform_data" "stop_sshd" {
     interpreter = ["PowerShell"]
   }
 }
-
-
-### TODO
-# Create 2 users
-# Make test script of one of the users uploading a file and then downloading it from SFTP server
-# Write new script that consolidates stop_sshd and deactivate_sshd-in to one resource
