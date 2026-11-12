@@ -11,9 +11,9 @@ if ($isLocalAdmin -ne $true) {
     Write-Host "You are running as Admin!"
 }
 
-# Check PS version at least 5.0.0
-if ($PSVersionTable.PSVersion.Major -lt 5) {
-    Write-Host "Please run in PowerShell version 5 or higher!"
+# Check PS version exactly 5.1
+if ($PSVersionTable.PSVersion -contains '5.1.') {
+    Write-Host "Please run in PowerShell version 5.1!"
     Exit
 } else {
     Write-Host "Acceptable PowerShell version!"
@@ -53,9 +53,8 @@ $json = Get-Content -Path .\users.json | ConvertFrom-Json
 foreach ($account in $json) {
     $userExist = Get-LocalUser $account.name -ErrorAction SilentlyContinue
     if ($null -eq $userExist) {
-        $securepass = ConvertTo-SecureString -String $account.password -AsPlainText -Force
         Write-Host "Creating user $($account.name)"
-        New-LocalUser -Name $account.name -Password $securepass
+        New-LocalUser -Name $account.name -NoPassword
     } else {
         Write-Host "User $($account.name) already exists!" 
     }

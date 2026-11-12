@@ -1,1 +1,1 @@
-[{"name":"ea-sftp","password":"4"},{"name":"lau-sftp","password":"p"}]
+[{"chroot":"./shared","name":"ea-sftp"},{"chroot":"./shared","name":"lau-sftp"}]

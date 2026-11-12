@@ -9,7 +9,7 @@ resource "local_file" "test" {
 resource "local_sensitive_file" "users" {
   filename = "${path.module}/users.json"
   content = jsonencode([
-    for u, p in var.users : { name = u, password = p }
+    for u, c in var.users : { name = u, chroot = c }
   ])
 }
 

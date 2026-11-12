@@ -98,6 +98,8 @@ I kept getting errors that in `installOpenSSHServer.ps1`, `ConvertTo-SecureStrin
 
 Running the script on it's own, with `powershell.exe -ExecutionPolicy Bypass -File .\installOpenSSHServer.ps1` works just fine. I therefore chose to break out each step into a `switch` and take it step by step.
 
-Terraform now builds the file structure and gives users access to the shared folder. The sshd install script now only installs SSH Server and creates the users.
+Terraform now builds the file structure and generates `users.json`. The sshd install script now installs SSH Server, creates the users, gives them NTFS folder permissions.
+
+Created `variables.tf` + `terraform.tfvars` (.tfvars is in .gitignore), which generate the username and chroot directory for the user accounts. These are then to be used by the sshd install script to config user access to the `shared` folder.
 
 ### Set chroot for users

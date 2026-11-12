@@ -1,4 +1,4 @@
 variable "users" {
-  type      = map(string)   # username: password
+  type      = map(string)   # username: chroot
   sensitive = false
 }
