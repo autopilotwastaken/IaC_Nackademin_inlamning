@@ -26,3 +26,60 @@
 [lau-laptop\laura] [2026-11-10 23:54:16] [OK] Started Service: sshd
 [lau-laptop\laura] [2026-11-10 23:54:18] [OK] Enabled Firewall Rule: sshd-in
 [lau-laptop\laura] [2026-11-10 23:54:18] [OK] Created user lau-sftp
+[lau-laptop\laura] [2026-11-11 18:52:03] [OK] Started Service: sshd
+[lau-laptop\laura] [2026-11-11 18:52:06] [OK] Enabled Firewall Rule: sshd-in
+[lau-laptop\laura] [2026-11-11 18:52:48] [OK] Started Service: sshd
+[lau-laptop\laura] [2026-11-11 18:52:49] [OK] Enabled Firewall Rule: sshd-in
+[lau-laptop\laura] [2026-11-12 09:23:12] [OK] Started Service: sshd
+[lau-laptop\laura] [2026-11-12 09:23:14] [OK] Enabled Firewall Rule: sshd-in
+[lau-laptop\laura] [2026-11-12 09:23:53] [OK] Started Service: sshd
+[lau-laptop\laura] [2026-11-12 09:23:55] [OK] Enabled Firewall Rule: sshd-in
+[lau-laptop\laura] [2026-11-12 09:23:56] [OK] Created user lau-sftp
+[lau-laptop\laura] [2026-11-12 09:23:56] [INFO] Granted lau-sftp Modify access to Shared Folder
+[lau-laptop\laura] [2026-11-12 09:23:56] [OK] Created user ea-sftp
+[lau-laptop\laura] [2026-11-12 09:23:56] [INFO] Granted ea-sftp Modify access to Shared Folder
+[lau-laptop\laura] [2026-11-12 09:26:24] [OK] Started Service: sshd
+[lau-laptop\laura] [2026-11-12 09:26:26] [OK] Enabled Firewall Rule: sshd-in
+[lau-laptop\laura] [2026-11-12 09:26:27] [OK] Created user lau-sftp
+[lau-laptop\laura] [2026-11-12 09:26:27] [INFO] Granted lau-sftp Modify access to Shared Folder
+[lau-laptop\laura] [2026-11-12 09:26:27] [OK] Created user ea-sftp
+[lau-laptop\laura] [2026-11-12 09:26:27] [INFO] Granted ea-sftp Modify access to Shared Folder
+[lau-laptop\laura] [2026-11-12 10:04:44] [OK] Started Service: sshd
+[lau-laptop\laura] [2026-11-12 10:04:46] [OK] Enabled Firewall Rule: sshd-in
+[lau-laptop\laura] [2026-11-12 10:04:46] [OK] Created user lau-sftp
+[lau-laptop\laura] [2026-11-12 10:04:46] [INFO] Granted lau-sftp Modify access to Shared Folder
+[lau-laptop\laura] [2026-11-12 10:04:46] [OK] Created user ea-sftp
+[lau-laptop\laura] [2026-11-12 10:04:46] [INFO] Granted ea-sftp Modify access to Shared Folder
+[lau-laptop\laura] [2026-11-12 10:05:50] [OK] Started Service: sshd
+[lau-laptop\laura] [2026-11-12 10:05:52] [OK] Enabled Firewall Rule: sshd-in
+[lau-laptop\laura] [2026-11-12 10:05:52] [OK] Created user lau-sftp
+[lau-laptop\laura] [2026-11-12 10:05:52] [INFO] Granted lau-sftp Modify access to Shared Folder
+[lau-laptop\laura] [2026-11-12 10:05:52] [OK] Created user ea-sftp
+[lau-laptop\laura] [2026-11-12 10:05:52] [INFO] Granted ea-sftp Modify access to Shared Folder
+[lau-laptop\laura] [2026-11-12 10:06:37] [OK] Started Service: sshd
+[lau-laptop\laura] [2026-11-12 10:06:39] [OK] Enabled Firewall Rule: sshd-in
+[lau-laptop\laura] [2026-11-12 10:06:39] [OK] Created user lau-sftp
+[lau-laptop\laura] [2026-11-12 10:06:39] [OK] Created user ea-sftp
+[lau-laptop\laura] [2026-11-12 10:14:11] [OK] Created user lau-sftp
+[lau-laptop\laura] [2026-11-12 10:14:11] [OK] Created user ea-sftp
+[lau-laptop\laura] [2026-11-12 10:15:40] [OK] Created user lau-sftp
+[lau-laptop\laura] [2026-11-12 10:15:40] [INFO] Granted lau-sftp Modify access to Shared Folder
+[lau-laptop\laura] [2026-11-12 10:15:40] [OK] Created user ea-sftp
+[lau-laptop\laura] [2026-11-12 10:15:40] [INFO] Granted ea-sftp Modify access to Shared Folder
+[lau-laptop\laura] [2026-11-12 10:17:08] [OK] Created user lau-sftp
+[lau-laptop\laura] [2026-11-12 10:17:08] [INFO] Granted lau-sftp Modify access to Shared Folder
+[lau-laptop\laura] [2026-11-12 10:17:08] [OK] Created user ea-sftp
+[lau-laptop\laura] [2026-11-12 10:18:14] [OK] Created user lau-sftp
+[lau-laptop\laura] [2026-11-12 10:18:14] [INFO] Granted lau-sftp Modify access to Shared Folder
+[lau-laptop\laura] [2026-11-12 10:18:14] [OK] Created user ea-sftp
+[lau-laptop\laura] [2026-11-12 10:18:14] [INFO] Granted ea-sftp Modify access to Shared Folder
+[lau-laptop\laura] [2026-11-12 10:26:52] [OK] Created user lau-sftp
+[lau-laptop\laura] [2026-11-12 10:26:52] [OK] Created user ea-sftp
+[lau-laptop\laura] [2026-11-12 11:09:25] [OK] Started Service: sshd
+[lau-laptop\laura] [2026-11-12 11:09:27] [OK] Enabled Firewall Rule: sshd-in
+[lau-laptop\laura] [2026-11-12 11:09:27] [OK] Created user lau-sftp
+[lau-laptop\laura] [2026-11-12 11:09:27] [OK] Created user ea-sftp
+[lau-laptop\laura] [2026-11-12 11:11:05] [OK] Started Service: sshd
+[lau-laptop\laura] [2026-11-12 11:11:06] [OK] Enabled Firewall Rule: sshd-in
+[lau-laptop\laura] [2026-11-12 11:11:06] [OK] Created user lau-sftp
+[lau-laptop\laura] [2026-11-12 11:11:06] [OK] Created user ea-sftp

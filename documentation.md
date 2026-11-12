@@ -81,3 +81,13 @@ Made a test `JSON` file to load user info from during `terraform apply`.
 Refactored sftp user setup to load username and password from `users.json` in `installOpenSSHServer.ps1`. Uses `-AsPlainText -Force` because it is taken from unencrypted text via `.json`.
 
 Added a second user to the `json` file, making it a list with 2 dicts. Refactored the code to unpack the list and loop over each dict when creating users, entirely through experimenting.
+
+## 2026-11-12
+
+### give users folder permissions and set chroot
+
+[Link to guide on icacls](https://www.getorchestra.io/guides/powershell-grant-user-access-to-folder)
+
+`icacls ".\shared" /grant lau-sftp:M` grants user `lau-sftp` access to the `shared` folder.
+
+Adding this to the user creation loop breaks the script. Therefore I broke it out and made a new loop to grant access to users.

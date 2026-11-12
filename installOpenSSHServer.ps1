@@ -1,5 +1,6 @@
 # This script assumes you are running Win11 / WinServ22 (or newer)
 # This script has to be run in an elevated (Run as Administrator) terminal!
+import-module microsoft.powershell.localaccounts # needed for managing local users in PS7
 
 # Setup logfile
 if (!(Test-Path .\setup.log)) {
@@ -78,8 +79,6 @@ if (!(Get-NetFirewallRule -Name "sshd-in" -ErrorAction SilentlyContinue)) {
 }
 
 # Create new user for SFTP
-import-module microsoft.powershell.localaccounts # needed for managing local users in PS7
-
 $json = Get-Content -Path .\users.json | ConvertFrom-Json
 foreach ($account in $json) {
     $userExist = Get-LocalUser $account.name -ErrorAction SilentlyContinue
@@ -87,11 +86,27 @@ foreach ($account in $json) {
         $securepass = ConvertTo-SecureString -String $account.password -AsPlainText -Force
         Write-Host "Creating user $($account.name)"
         New-LocalUser -Name $account.name -Password $securepass
+        Write-Log "Created user $($account.name)" -Level OK
     } else {
         Write-Host "User $($account.name) already exists!" 
     }
 }
 
+# Give users Modify Permissions in Shared folder
+foreach ($account in $json) {
+    $userExist = Get-LocalUser $account.name -ErrorAction SilentlyContinue
+    if ($null -ne $userExist) {
+        icacls ".\shared" /grant "$($env:COMPUTERNAME)\$($account.name):M"
+    } else {
+        Write-Host "User $($account.name) doesn't exist!" 
+    }
+}
 
-# Add reading from JSON + loop over list of users from JSON file when creating new users
+
+
+# Write-Host "Granting $($account.name) Modify access to Shared Folder"
+# icacls ".\shared" /grant ($account.name):M
+# Write-Log "Granted $($account.name) Modify access to Shared Folder"
+
+
 # Add folder access to new users
