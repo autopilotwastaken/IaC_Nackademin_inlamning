@@ -71,30 +71,4 @@ foreach ($account in $json) {
     }
 }
 
-
-
-# do {
-#     Show-Menu
-#     $choice = Read-Host "Follow the steps to set up SFTP Server"
-    
-#     # Validate that input is a number
-#     if (-not ($choice -match "^[0-9]+$")) {
-#         Write-Host "Please enter a number between 1 and 9."
-#         continue
-#     }
-    
-#     switch ($choice) {
-#         "1"  { Install-sshd }
-#         "2"  { Create-FolderStructureAndConfig }
-#         "3"  { Create-Users }
-#         "4"  { Grant-UsersNTFSPermissions }
-#         "5"  { Config-UserChroot }
-#         "6"  { Upload-File }
-#         "7"  { Download-File }
-#         "8"  { Disable-SFTP }
-#         "9" { Write-Host "Exiting setup" }
-#         default { 
-#             Write-Host "Please enter a number between 1 and 11."
-#         }
-#     }
-# } while ($choice -ne "9")
+# Add folder access to new users
