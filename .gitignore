@@ -4,3 +4,4 @@
 .terraform*
 /shared
 labb.ps1
+reset.ps1

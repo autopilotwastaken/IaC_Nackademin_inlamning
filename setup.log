@@ -83,3 +83,17 @@
 [lau-laptop\laura] [2026-11-12 11:11:06] [OK] Enabled Firewall Rule: sshd-in
 [lau-laptop\laura] [2026-11-12 11:11:06] [OK] Created user lau-sftp
 [lau-laptop\laura] [2026-11-12 11:11:06] [OK] Created user ea-sftp
+[lau-laptop\laura] [2026-11-12 11:29:36] [OK] Started Service: sshd
+[lau-laptop\laura] [2026-11-12 11:29:38] [OK] Enabled Firewall Rule: sshd-in
+[lau-laptop\laura] [2026-11-12 11:30:36] [OK] Started Service: sshd
+[lau-laptop\laura] [2026-11-12 11:30:38] [OK] Enabled Firewall Rule: sshd-in
+[lau-laptop\laura] [2026-11-12 11:30:38] [OK] Created user lau-sftp
+[lau-laptop\laura] [2026-11-12 11:30:38] [OK] Created user ea-sftp
+[lau-laptop\laura] [2026-11-12 11:33:50] [OK] Started Service: sshd
+[lau-laptop\laura] [2026-11-12 11:33:51] [OK] Enabled Firewall Rule: sshd-in
+[lau-laptop\laura] [2026-11-12 11:33:51] [OK] Created user lau-sftp
+[lau-laptop\laura] [2026-11-12 11:33:51] [OK] Created user ea-sftp
+[lau-laptop\laura] [2026-11-12 11:39:00] [OK] Started Service: sshd
+[lau-laptop\laura] [2026-11-12 11:39:01] [OK] Enabled Firewall Rule: sshd-in
+[lau-laptop\laura] [2026-11-12 11:39:01] [OK] Created user lau-sftp
+[lau-laptop\laura] [2026-11-12 11:39:01] [OK] Created user ea-sftp

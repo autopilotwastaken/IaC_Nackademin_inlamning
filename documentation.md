@@ -84,10 +84,20 @@ Added a second user to the `json` file, making it a list with 2 dicts. Refactore
 
 ## 2026-11-12
 
-### give users folder permissions and set chroot
+### give users folder permissions (installOpenSSHServer.ps1)
 
 [Link to guide on icacls](https://www.getorchestra.io/guides/powershell-grant-user-access-to-folder)
 
 `icacls ".\shared" /grant lau-sftp:M` grants user `lau-sftp` access to the `shared` folder.
 
-Adding this to the user creation loop breaks the script. Therefore I broke it out and made a new loop to grant access to users.
+Adding this to the user creation loop breaks the script. Therefore I broke it out and made a new loop to grant access to users. This worked
+
+### Unlink main.tf calling on installOpenSSHServer.ps1 + break up into switch
+
+I kept getting errors that in `installOpenSSHServer.ps1`, `ConvertTo-SecureString` couldn't load `Microsoft.PowerShell.Security` (needed to give new user accounts secure passwords), but only when running the script from main.tf. This is because they are different PowerShell instances and that gets blocked by the execution policy on Win11, regardless of execution policy and bypasses.
+
+Running the script on it's own, with `powershell.exe -ExecutionPolicy Bypass -File .\installOpenSSHServer.ps1` works just fine. I therefore chose to break out each step into a `switch` and take it step by step.
+
+Terraform now builds the file structure and gives users access to the shared folder. The sshd install script now only installs SSH Server and creates the users.
+
+### Set chroot for users
