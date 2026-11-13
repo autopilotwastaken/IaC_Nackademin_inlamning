@@ -48,13 +48,16 @@ if (!(Get-NetFirewallRule -Name "sshd-in" -ErrorAction SilentlyContinue)) {
     Write-Output "Firewall rule 'sshd-in' already exists and is Running"
 }
 
+# Take a password and turn into secure string
+$password = Read-Host "give a password" -assecurestring
+
 # Create new user for SFTP
 $json = Get-Content -Path .\users.json | ConvertFrom-Json
 foreach ($account in $json) {
     $userExist = Get-LocalUser $account.name -ErrorAction SilentlyContinue
     if ($null -eq $userExist) {
         Write-Host "Creating user $($account.name)"
-        New-LocalUser -Name $account.name -NoPassword
+        New-LocalUser -Name $account.name -Password $password
     } else {
         Write-Host "User $($account.name) already exists!" 
     }
@@ -70,8 +73,27 @@ foreach ($account in $json) {
     }
 }
 
-# Append to C:\ProgramData\ssh\sshd_config:
-# Match User $($account.name)
-#     ForceCommand internal-sftp
-#     ChrootDirectory $PSScriptRoot$($account.chroot)/$($account.name)
-#     PasswordAuthentication yes
+
+# add chroot to sshd_config
+# sshd needs forwardslash to work
+$chroot = (Join-Path -Path $PSScriptRoot -ChildPath "\sftp\shared") -replace '\\', '/'
+
+
+foreach ($account in $json) {
+    $u = $account.name
+    $matchUser = @"
+
+Match User $u
+    ForceCommand internal-sftp
+    ChrootDirectory $chroot
+    PasswordAuthentication yes
+"@
+
+Add-Content -Path "C:\ProgramData\ssh\sshd_config" -Value $matchUser -Encoding ascii
+}
+
+Stop-Service sshd
+Start-Service sshd
+
+# DURING REDOVISNING
+# upload a test file with <put "C:\Users\Laura\Desktop\Minnen\bse_poster.jpg">
