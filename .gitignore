@@ -7,3 +7,4 @@ terraform.tfvars
 labb.ps1
 reset.ps1
 users.json
+/sftp
