@@ -71,7 +71,7 @@ foreach ($account in $json) {
 foreach ($account in $json) {
     $userExist = Get-LocalUser $account.name -ErrorAction SilentlyContinue
     if ($null -ne $userExist) {
-        icacls ".\sftp\shared" /grant "$($env:COMPUTERNAME)\$($account.name):M"
+        icacls ".$($account.chroot)" /grant "$($env:COMPUTERNAME)\$($account.name):M"
     } else {
         Write-Host "User $($account.name) doesn't exist!" 
     }
@@ -80,9 +80,9 @@ foreach ($account in $json) {
 
 # add chroot to sshd_config
 # sshd needs forwardslash to work
-$chroot = (Join-Path -Path $PSScriptRoot -ChildPath "\sftp\shared") -replace '\\', '/'
-
 foreach ($account in $json) {
+    $c = $account.chroot
+    $chroot = (Join-Path -Path $PSScriptRoot -ChildPath $c) -replace '\\', '/'
     $u = $account.name
     $matchUser = @"
 

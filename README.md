@@ -1,8 +1,6 @@
-# IaC_Nackademin_inlamning
+# SFTP Setup
 
-Title should be clear for a higher grade (VG)
-
-## Explanantion of how the project is assessed
+## Explanation of how the project is assessed
 
 This is an Examination project for the course IaC at Nackademin Oct-Nov 2026. The following sections explain what is expected for each passing grade.
 
