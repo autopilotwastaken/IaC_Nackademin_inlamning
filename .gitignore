@@ -4,7 +4,5 @@
 .terraform*
 terraform.tfvars
 /shared
-labb.ps1
-reset.ps1
 users.json
 /sftp

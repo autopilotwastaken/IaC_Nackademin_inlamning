@@ -20,10 +20,14 @@ if ($PSVersionTable.PSVersion -contains '5.1.') {
 }
 
 # Check if OpenSSH Server installed & install if not
-$openSSHInstalled = Get-WindowsCapability -Online | Where-Object Name -like 'OpenSSH.Server~~~~0.0.1.0'
+$openSSHInstalled = Get-WindowsCapability -Online | Where-Object Name -like 'OpenSSH.Server~~~~0.0.1.0' -ErrorAction Stop
 if ($openSSHInstalled.State -eq "NotPresent") {
-    Write-Host "Installing OpenSSH Server!"
-    Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
+    try {
+        Write-Host "Installing OpenSSH Server!"
+        Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
+    } catch {
+        Write-Host "ERROR: $($_.Exception.Message)"
+    }
 } else {
     Write-Host "OpenSSH Server is installed!"
 }
@@ -49,7 +53,7 @@ if (!(Get-NetFirewallRule -Name "sshd-in" -ErrorAction SilentlyContinue)) {
 }
 
 # Take a password and turn into secure string
-$password = Read-Host "give a password" -assecurestring
+$password = Read-Host "give a password" -AsSecureString
 
 # Create new user for SFTP
 $json = Get-Content -Path .\users.json | ConvertFrom-Json
@@ -78,7 +82,6 @@ foreach ($account in $json) {
 # sshd needs forwardslash to work
 $chroot = (Join-Path -Path $PSScriptRoot -ChildPath "\sftp\shared") -replace '\\', '/'
 
-
 foreach ($account in $json) {
     $u = $account.name
     $matchUser = @"
@@ -92,6 +95,7 @@ Match User $u
 Add-Content -Path "C:\ProgramData\ssh\sshd_config" -Value $matchUser -Encoding ascii
 }
 
+# Changes to sshd_config require sshd to be restarted
 Stop-Service sshd
 Start-Service sshd
 

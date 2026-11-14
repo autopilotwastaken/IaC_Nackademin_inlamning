@@ -103,3 +103,25 @@ Terraform now builds the file structure and generates `users.json`. The sshd ins
 Created `variables.tf` + `terraform.tfvars` (.tfvars is in .gitignore), which generate the username and chroot directory for the user accounts. These are then to be used by the sshd install script to config user access to the `shared` folder.
 
 ### Set chroot for users
+
+`sshd_config` needs 'match user' blocks to be able to give different users chroot directories.
+
+Figured out how to insert 'match user' blocks with `Add-Content` and `here-strings`:
+
+```powershell
+$matchUser = @"
+
+Match User $u
+    ForceCommand internal-sftp
+    ChrootDirectory $chroot
+    PasswordAuthentication yes
+"@
+```
+
+Leading empty row adds an extra breakline, which separates the blocks when several are inserted.
+
+## 2026-11-14
+
+### Try/catch in installOpenSSHServer.ps1
+
+Because I had trouble with installing OpenSSH Server at earlier dates, I descided to put a try/catch around it, writing out `$($_.Exception.Message)`, so I would get a helpful message if it fails.
