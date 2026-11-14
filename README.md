@@ -4,59 +4,31 @@
 
 This is an Examination project for the course IaC at Nackademin Oct-Nov 2026. The following sections explain what is expected for each passing grade.
 
-### For a passing grade (G)
-
-This project is to have at least:
-
-1. One PowerShell script with functioning parameters and error handling (try/catch). Must have functions, loops and conditions.
-2. One Terraform config file with variables and outputs. Must have at least 2 resources (files or catalogs), variables (for flexibility) and outputs (for verification). Must use `local-provider`
-3. A README.md-file, explaining the projects goal, methodology, results and a reflection written by it's creator. Must also include a link to the Github Repository where the project was develpoed.
-
-Must have File- and Catalog handling (move this to appropriate point in list above when specified where it goes)
-Results must be verified
-Github repository must have at least 5 commits
-
-Script chain: Terraform -> PowerShell
-
-### For a higher grade (VG)
-
-The project may also include:
-
-1. A Python script that either verifies or orchestrates the project
-2. A functioning Ansible Playbook
-
-Script chain: Terraform -> Ansible -> Powershell -> Python
-(Or similar, should be explained in detail as to why it was changed)
-
 ## Goals
 
-This is an explanation for what the project should solve, it's reason for existing (G).
-
-Explaining how the project is linked to our sector of work will give a higher grade (VG).
+This project creates an SFTP server on my local computer. Users can be added and dynamically be given access to the main shared folder.
 
 ## Methodology
 
-This is an explanation of the methods used (G)
+Terraform and PowerShell were used in this project.
 
-Explaining why they were chosen will give a higher grade (VG).
+Terraform creates the shared folder and generates a JSON file with usernames and chroot directories. It also deactivates sshd and its corresponding firewall rule on `destroy`. It uses `variables.tf` to define the format for variables in `terraform.tfvars`, which has dicts/maps of usernames and chroot directory paths to be sent to JSON upon `create`.
 
-## Resultss
+Powershell installs `OpenSSH Server`, starts the `sshd` service, creates a firewall rule to open port 22 to incoming traffic and starts it. If the firewall rule already exists but isn't active, it activates it. It then asks the user to imput a string, converting it to a secure string.
 
-This section shows what the results were after the chain of code ran (G).
+PowerShell then creates users based on JSON, using the secure string as passwords, gives users NTFS permissions to modify the shared folder and lastly injects `match user` blocks into `sshd_config` and restarts the `sshd` service.
 
-Showing examples from logs and output may result in a higher grade (VG).
+## Results
+
+After all code has ran, it allows 2 new users to sftp into the shared folder and modify the files in said folder. Code is only runnable once, users need to be manually removed, their permissions in shared folder need to be manually removed and `sshd_config` needs to be edited after every run.
 
 ## Reflection
 
-This section shows a reflection of what went well and what was difficult when developing.
+Difficulty was had with orchestrating the entire flow via Terraform, which was given up on after discussion with the teacher. This flow does not have different passwords for different users, which is the most glaring fault and should be fixed at first opportunity if work continues on this project.
 
-Being thorough may result in a higher grade (VG).
+Unpacking values from JSON was easy and easily laborated into the code.
 
-## Step-by-step instructions (OPTIONAL)
-
-This section, if existing, may result in a higher grade (VG).
-
-See the excel-file for an example of how this may look.
+Adding a script to remove users, their NTFS permissions and their corresponding `match user` blocks from `sshd` should be added as a script to be run from a provisioner in `main.tf` as one of the next steps.
 
 ## Link to Github Repository
 

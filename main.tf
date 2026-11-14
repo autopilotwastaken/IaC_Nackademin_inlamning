@@ -6,7 +6,7 @@ resource "local_file" "test" {
   filename = "${path.module}/sftp/shared/.keep"
 }
 
-resource "local_sensitive_file" "users" {
+resource "local_file" "users" {
   filename = "${path.module}/users.json"
   content = jsonencode([
     for u, c in var.users : { name = u, chroot = c }
